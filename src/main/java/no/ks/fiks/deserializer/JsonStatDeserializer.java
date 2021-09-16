@@ -11,7 +11,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
 
@@ -26,22 +29,22 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
         final LocalDateTime updated = LocalDateTime.parse(jsonNode.get("updated").asText(), dtf);
         final List<JsonNode> id = new ArrayList<>();
-        for (JsonNode jn: jsonNode.get("id")) {
+        for (JsonNode jn : jsonNode.get("id")) {
             id.add(jn);
         }
         final List<Integer> size = new ArrayList<>();
-        for (JsonNode jn: jsonNode.get("size")) {
+        for (JsonNode jn : jsonNode.get("size")) {
             size.add(jn.intValue());
         }
 
         final List<JsonNode> dimensions = new ArrayList<>();
-        for (JsonNode idName: id) {
+        for (JsonNode idName : id) {
             dimensions.add(jsonNode.get("dimension").get(idName.asText()));
         }
 
         final List<BigDecimal> values = new ArrayList<>();
 
-        for (JsonNode value: jsonNode.get("value")) {
+        for (JsonNode value : jsonNode.get("value")) {
             if (value.isNull()) {
                 values.add(null);
             } else {
@@ -54,7 +57,7 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
         String[] statusSplit;
         if (jsonNode.get("status") != null) {
             statusSplit = jsonNode.get("status").toString().split(",");
-            for (String s: statusSplit) {
+            for (String s : statusSplit) {
                 String[] cleanUpStatus = s.split(":");
                 if (cleanUpStatus[0].startsWith("{") || cleanUpStatus[1].endsWith("}")) {
                     cleanUpStatus[0] = cleanUpStatus[0].replace("{", "");
@@ -67,7 +70,7 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
 
         final Map<String, String> role = new LinkedHashMap<>();
         String[] roleSplit = jsonNode.get("role").toString().split(",");
-        for (String s: roleSplit) {
+        for (String s : roleSplit) {
             String[] cleanUpRole = s.split(":");
             if (cleanUpRole[0].startsWith("{") || cleanUpRole[1].endsWith("}")) {
                 cleanUpRole[0] = cleanUpRole[0].replace("{", "");

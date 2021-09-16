@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class InsertTableService {
 
+    int counter = 1;
     private JsonStat jsonStat;
     private List<String> valuesStrings;
     private boolean shouldIterate = false;
@@ -35,21 +36,19 @@ public class InsertTableService {
 
         int dimension = 0;
 
-        for (int i = 0; i < 27; i++) {
+        for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[0].length; j++) {
-                //System.out.println("dimension start: " + dimension + ", itertate start: " + shouldIterate);
                 String[] split = Arrays.toString(
-                        keyAndValue(
-                                jsonStat.getDimensions()
-                                        .get(dimension)
-                                        .getCategoryList()
-                                        .get(increaseCategorySize(dimension++, jsonStat.getSize().size() - 1, dimSizeIterator))))
+                                keyAndValue(
+                                        jsonStat.getDimensions()
+                                                .get(dimension)
+                                                .getCategoryList()
+                                                .get(increaseCategorySize(dimension++, jsonStat.getSize().size() - 1, dimSizeIterator))))
                         .replaceAll("\\[|\\]", "")
                         .split("=");
                 if (dimension == 1)
                     shouldIterate = false;
-                //System.out.println("dimension end: " + dimension + ", itertate end: " + shouldIterate);
-                //System.out.println(split[0] + " " + split[1]);
+
                 table[i][j++] = split[0];
                 table[i][j] = split[1];
                 if (dimension == dimSizeIterator.size()) {
@@ -59,36 +58,33 @@ public class InsertTableService {
             }
         }
 
-        for (int i = 0; i < 26; i++) {
-            System.out.print(i + ":  \t");
+        for (int i = 0; i < table.length; i++) {
+            System.out.print(i + 1 + ":  \t");
             for (int j = 0; j < table[0].length; j++) {
-                System.out.print(table[i][j] + " ");
+                System.out.print(table[i][j++] + " ");
             }
-            System.out.println();
+            System.out.println(jsonStat.getValues().get(i));
         }
     }
 
     private Object[] keyAndValue(Map<String, String> test) {
-        System.out.println(test);
         return test.entrySet().toArray();
     }
 
     private int increaseCategorySize(int dimPosition, int categorySize, Map<Integer, Integer> dimSizeIterator) {
-        System.out.println("category size outside if " + categorySize + ", iterate: " + shouldIterate);
-        int returnVal = dimSizeIterator.get(dimPosition);
-        if (dimSizeIterator.get(categorySize) == jsonStat.getSize().get(categorySize)) {
-            System.out.println("yes");
+        int jsSize = jsonStat.getSize().get(categorySize);
+
+        if ((dimSizeIterator.get(categorySize) < jsSize) && shouldIterate) {
+            shouldIterate = false;
+            dimSizeIterator.put(categorySize, dimSizeIterator.get(categorySize) + 1);
+        }
+        if (dimSizeIterator.get(categorySize) == jsSize) {
             shouldIterate = true;
             dimSizeIterator.put(categorySize, 0);
             return increaseCategorySize(dimPosition, categorySize - 1, dimSizeIterator);
-        } else if ((dimSizeIterator.get(categorySize) < jsonStat.getSize().get(categorySize)) && shouldIterate) {
-            //System.out.println("Category size in if: " + categorySize);
-            dimSizeIterator.forEach((key, value) -> System.out.println(key + ": " + value));
-            dimSizeIterator.put(categorySize, dimSizeIterator.get(categorySize) + 1);
         }
-        shouldIterate = false;
 
-        //System.out.println("\nReturn value: " + returnVal + ", dimension: " + jsonStat.getDimensions().get(dimPosition).getDimensionName() + "\n");
-        return returnVal;
+
+        return dimSizeIterator.get(dimPosition);
     }
 }
