@@ -1,68 +1,408 @@
 package no.ks.fiks;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import no.ks.fiks.Service.InsertTableService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 
-//@SpringBootApplication
-public class App /*implements CommandLineRunner */{
-
-    private static ConfigurableApplicationContext ctx;
-    /*@Autowired
-    private JdbcTemplate jdbcTemplate;*/
-
+public class App {
     public static void main(String[] args) throws IOException {
-//        ctx = new SpringApplicationBuilder(App.class).web(WebApplicationType.NONE).run();
-        new InsertTableService().test();
+        new InsertTableService().structureJsonStatTable("{\n" +
+                "  \"class\": \"dataset\",\n" +
+                "  \"label\": \"07459: Befolkning, etter region, kjønn, alder, statistikkvariabel og år\",\n" +
+                "  \"source\": \"Statistisk sentralbyrå\",\n" +
+                "  \"updated\": \"2021-02-23T07:00:00Z\",\n" +
+                "  \"id\": [\n" +
+                "    \"Region\",\n" +
+                "    \"Kjonn\",\n" +
+                "    \"Alder\",\n" +
+                "    \"ContentsCode\",\n" +
+                "    \"Tid\"\n" +
+                "  ],\n" +
+                "  \"size\": [\n" +
+                "    5,\n" +
+                "    2,\n" +
+                "    5,\n" +
+                "    1,\n" +
+                "    5\n" +
+                "  ],\n" +
+                "  \"dimension\": {\n" +
+                "    \"Region\": {\n" +
+                "      \"label\": \"region\",\n" +
+                "      \"category\": {\n" +
+                "        \"index\": {\n" +
+                "          \"0\": 0,\n" +
+                "          \"30\": 1,\n" +
+                "          \"01\": 2,\n" +
+                "          \"99\": 3,\n" +
+                "          \"9999\": 4\n" +
+                "        },\n" +
+                "        \"label\": {\n" +
+                "          \"0\": \"Hele landet\",\n" +
+                "          \"30\": \"Viken\",\n" +
+                "          \"01\": \"Østfold (-2019)\",\n" +
+                "          \"99\": \"Uoppgitt fylke\",\n" +
+                "          \"9999\": \"Uoppgitt kommune\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"link\": {\n" +
+                "        \"describedby\": [\n" +
+                "          {\n" +
+                "            \"extension\": {\n" +
+                "              \"Region\": \"urn:ssb:classification:klass:104 urn:ssb:classification:klass:131\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"Kjonn\": {\n" +
+                "      \"label\": \"kjønn\",\n" +
+                "      \"category\": {\n" +
+                "        \"index\": {\n" +
+                "          \"1\": 0,\n" +
+                "          \"2\": 1\n" +
+                "        },\n" +
+                "        \"label\": {\n" +
+                "          \"1\": \"Menn\",\n" +
+                "          \"2\": \"Kvinner\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"link\": {\n" +
+                "        \"describedby\": [\n" +
+                "          {\n" +
+                "            \"extension\": {\n" +
+                "              \"Kjonn\": \"urn:ssb:classification:klass:2\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"Alder\": {\n" +
+                "      \"label\": \"alder\",\n" +
+                "      \"category\": {\n" +
+                "        \"index\": {\n" +
+                "          \"000\": 0,\n" +
+                "          \"001\": 1,\n" +
+                "          \"002\": 2,\n" +
+                "          \"104\": 3,\n" +
+                "          \"105+\": 4\n" +
+                "        },\n" +
+                "        \"label\": {\n" +
+                "          \"000\": \"0 år\",\n" +
+                "          \"001\": \"1 år\",\n" +
+                "          \"002\": \"2 år\",\n" +
+                "          \"104\": \"104 år\",\n" +
+                "          \"105+\": \"105 år eller eldre\"\n" +
+                "        }\n" +
+                "      },\n" +
+                "      \"link\": {\n" +
+                "        \"describedby\": [\n" +
+                "          {\n" +
+                "            \"extension\": {\n" +
+                "              \"Alder\": \"urn:ssb:classification:klass:282\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"ContentsCode\": {\n" +
+                "      \"label\": \"statistikkvariabel\",\n" +
+                "      \"category\": {\n" +
+                "        \"index\": {\n" +
+                "          \"Personer1\": 0\n" +
+                "        },\n" +
+                "        \"label\": {\n" +
+                "          \"Personer1\": \"Personer\"\n" +
+                "        },\n" +
+                "        \"unit\": {\n" +
+                "          \"Personer1\": {\n" +
+                "            \"base\": \"personer\",\n" +
+                "            \"decimals\": 0\n" +
+                "          }\n" +
+                "        }\n" +
+                "      }\n" +
+                "    },\n" +
+                "    \"Tid\": {\n" +
+                "      \"label\": \"år\",\n" +
+                "      \"category\": {\n" +
+                "        \"index\": {\n" +
+                "          \"1986\": 0,\n" +
+                "          \"1987\": 1,\n" +
+                "          \"1988\": 2,\n" +
+                "          \"2020\": 3,\n" +
+                "          \"2021\": 4\n" +
+                "        },\n" +
+                "        \"label\": {\n" +
+                "          \"1986\": \"1986\",\n" +
+                "          \"1987\": \"1987\",\n" +
+                "          \"1988\": \"1988\",\n" +
+                "          \"2020\": \"2020\",\n" +
+                "          \"2021\": \"2021\"\n" +
+                "        }\n" +
+                "      }\n" +
+                "    }\n" +
+                "  },\n" +
+                "  \"value\": [\n" +
+                "    26175,\n" +
+                "    26923,\n" +
+                "    27394,\n" +
+                "    28208,\n" +
+                "    27129,\n" +
+                "    25768,\n" +
+                "    26230,\n" +
+                "    27092,\n" +
+                "    28847,\n" +
+                "    28422,\n" +
+                "    25831,\n" +
+                "    25826,\n" +
+                "    26395,\n" +
+                "    29823,\n" +
+                "    28947,\n" +
+                "    0,\n" +
+                "    4,\n" +
+                "    0,\n" +
+                "    12,\n" +
+                "    4,\n" +
+                "    3,\n" +
+                "    2,\n" +
+                "    3,\n" +
+                "    19,\n" +
+                "    23,\n" +
+                "    24799,\n" +
+                "    25363,\n" +
+                "    26488,\n" +
+                "    26619,\n" +
+                "    26005,\n" +
+                "    24606,\n" +
+                "    24907,\n" +
+                "    25552,\n" +
+                "    27165,\n" +
+                "    26803,\n" +
+                "    24282,\n" +
+                "    24680,\n" +
+                "    25034,\n" +
+                "    28058,\n" +
+                "    27195,\n" +
+                "    6,\n" +
+                "    10,\n" +
+                "    12,\n" +
+                "    51,\n" +
+                "    47,\n" +
+                "    8,\n" +
+                "    9,\n" +
+                "    11,\n" +
+                "    54,\n" +
+                "    75,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    6248,\n" +
+                "    6005,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    6572,\n" +
+                "    6559,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    6891,\n" +
+                "    6856,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    4,\n" +
+                "    3,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    5834,\n" +
+                "    5766,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    6246,\n" +
+                "    6098,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    6493,\n" +
+                "    6444,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    9,\n" +
+                "    6,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    5,\n" +
+                "    11,\n" +
+                "    1280,\n" +
+                "    1253,\n" +
+                "    1368,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    1268,\n" +
+                "    1316,\n" +
+                "    1277,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    1249,\n" +
+                "    1304,\n" +
+                "    1346,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    1205,\n" +
+                "    1219,\n" +
+                "    1253,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    1227,\n" +
+                "    1231,\n" +
+                "    1264,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    1203,\n" +
+                "    1250,\n" +
+                "    1258,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    1,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0,\n" +
+                "    0\n" +
+                "  ],\n" +
+                "  \"role\": {\n" +
+                "    \"time\": [\n" +
+                "      \"Tid\"\n" +
+                "    ],\n" +
+                "    \"metric\": [\n" +
+                "      \"ContentsCode\"\n" +
+                "    ]\n" +
+                "  },\n" +
+                "  \"version\": \"2.0\"\n" +
+                "}\n");
     }
-
-    /*@Override
-    public void run(String... args) {
-        new InsertTableService().test();
-
-        /*String sqlSelectStatement = "SELECT * FROM Tabellinformasjon";
-        List<String> allTables = jdbcTemplate.query(sqlSelectStatement, (rs, rowNum) -> rs.getString(2));
-        ResultSetExtractor<HashMap<String, String>> rse = rs -> {
-            HashMap<String, String> retVal = new HashMap<>();
-            while (rs.next()) {
-                retVal.put(rs.getString(2), rs.getString(4));
-            }
-            return retVal;
-        };
-
-        HashMap<String, String> createTableFilter = jdbcTemplate.query(sqlSelectStatement + " WHERE [Lag Tabell Filter] NOT LIKE 'NULL'", rse);
-
-
-        for (String table :
-                allTables) {
-            String sqlCreateTableStatement = "EXEC [dbo].[SSB_Lag_Tabell_v2]@SSBTableCode = '" + table + "'";
-            for (String key :
-                    createTableFilter.keySet()) {
-                String tableFilter = createTableFilter.get(key);
-
-                if (key.equals(table)) {
-                    sqlCreateTableStatement += ",@Filters= '" + tableFilter + "'";
-                }
-            }
-            Thread.sleep(5000);
-            jdbcTemplate.execute("DROP TABLE IF EXISTS SSB_" + table);
-            jdbcTemplate.execute(sqlCreateTableStatement);
-            System.out.println(sqlCreateTableStatement);
-        }
-        int exitCode = SpringApplication.exit(ctx, new ExitCodeGenerator() {
-            @Override
-            public int getExitCode() {
-                return 0;
-            }
-        });*/
-    //}
 }

@@ -56,34 +56,33 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
 
         String[] statusSplit;
         if (jsonNode.get("status") != null) {
-            statusSplit = jsonNode.get("status").toString().split(",");
+            statusSplit = splitJsonNode(jsonNode, "status");
             for (String s : statusSplit) {
-                String[] cleanUpStatus = s.split(":");
-                if (cleanUpStatus[0].startsWith("{") || cleanUpStatus[1].endsWith("}")) {
-                    cleanUpStatus[0] = cleanUpStatus[0].replace("{", "");
-                    cleanUpStatus[1] = cleanUpStatus[1].replace("}", "");
-                }
+                String[] cleanUpStatus = cleanString(s);
                 status.put(cleanUpStatus[0], cleanUpStatus[1]);
             }
         }
 
 
         final Map<String, String> role = new LinkedHashMap<>();
-        String[] roleSplit = jsonNode.get("role").toString().split(",");
+        String[] roleSplit = splitJsonNode(jsonNode, "role");
         for (String s : roleSplit) {
-            String[] cleanUpRole = s.split(":");
-            if (cleanUpRole[0].startsWith("{") || cleanUpRole[1].endsWith("}")) {
-                cleanUpRole[0] = cleanUpRole[0].replace("{", "");
-                cleanUpRole[1] = cleanUpRole[1].replace("}", "");
-                if (cleanUpRole[1].startsWith("[") && cleanUpRole[1].endsWith("]")) {
-                    cleanUpRole[1] = cleanUpRole[1].replace("[", "");
-                    cleanUpRole[1] = cleanUpRole[1].replace("]", "");
-                }
-            }
+            String[] cleanUpRole = cleanString(s);
             role.put(cleanUpRole[0], cleanUpRole[1]);
         }
 
 
         return new JsonStat(classSet, label, source, updated, id, size, dimensions, values, status, role);
+    }
+
+    private String[] splitJsonNode(JsonNode jsonNode, String nodeName) {
+        return jsonNode.get(nodeName).toString().split(",");
+    }
+
+    private String[] cleanString(String jsonString) {
+        String[] cleanUp = jsonString.split(":");
+        cleanUp[0] = cleanUp[0].replaceAll("\\{|\\[", "");
+        cleanUp[1] = cleanUp[1].replaceAll("\\}|\\[|\\]", "");
+        return cleanUp;
     }
 }
