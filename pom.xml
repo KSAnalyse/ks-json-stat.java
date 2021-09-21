@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>no.ks.fiks</groupId>
-  <artifactId>create-table</artifactId>
+  <artifactId>ks-json-stat.java</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>create-table</name>

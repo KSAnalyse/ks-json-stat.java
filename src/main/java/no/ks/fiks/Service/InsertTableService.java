@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import no.ks.fiks.JsonStat.JsonStat;
 import no.ks.fiks.deserializer.JsonStatDeserializer;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
@@ -16,7 +15,7 @@ public class InsertTableService {
     private boolean shouldIterate = false;
     private List<Map<String[], BigDecimal>> sortedJsonStat = new ArrayList<>();
 
-    public void structureJsonStatTable(String json) throws IOException {
+    public List<Map<String[], BigDecimal>> structureJsonStatTable(String json) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
 
@@ -54,11 +53,7 @@ public class InsertTableService {
                 }
             }
         }
-        sortedJsonStat = combineTableWithValues(table);
-        for (Map<String[], BigDecimal> bigDecimalMap :
-                sortedJsonStat) {
-            bigDecimalMap.forEach((key, value) -> System.out.println(Arrays.toString(key) + " " + value));
-        }
+        return sortedJsonStat = combineTableWithValues(table);
     }
 
     private List<Map<String[], BigDecimal>> combineTableWithValues(String[][] table) {
@@ -88,9 +83,5 @@ public class InsertTableService {
             return increaseCategorySize(dimPosition, categorySize - 1, dimSizeIterator);
         }
         return dimSizeIterator.get(dimPosition);
-    }
-
-    public List<Map<String[], BigDecimal>> getSortedJsonStat() {
-        return sortedJsonStat;
     }
 }

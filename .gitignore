@@ -1,1 +1,4 @@
 /target/
+out/artifacts/ks_json_stat_java_jar/ks-json-stat.java.jar
+src/main/resources/resultatTest.json
+*.json
