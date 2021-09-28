@@ -6,9 +6,9 @@
 
   <groupId>no.ks.fiks</groupId>
   <artifactId>ks-json-stat.java</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.1-SNAPSHOT</version>
 
-  <name>create-table</name>
+  <name>ks-json-stat.java</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
