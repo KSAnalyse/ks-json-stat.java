@@ -11,67 +11,73 @@ import java.util.*;
 
 public class InsertTableService {
 
-    private JsonStat jsonStat;
+    private final List<JsonStat> jsonStat = new ArrayList<>();
     private boolean shouldIterate = false;
-    private List<Map<String[], BigDecimal>> sortedJsonStat = new ArrayList<>();
+    private final List<Map<String[], BigDecimal>> sortedJsonStat = new ArrayList<>();
 
-    public List<Map<String[], BigDecimal>> structureJsonStatTable(String json) throws IOException {
+    public List<Map<String[], BigDecimal>> structureJsonStatTable(List<String> jsonList) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
 
         module.addDeserializer(JsonStat.class, new JsonStatDeserializer());
         mapper.registerModule(module);
-        jsonStat = mapper.readValue(json, JsonStat.class);
-        String[][] table = new String[jsonStat.getValues().size()][(jsonStat.getId().size() * 2)];
+        for (String json : jsonList) {
+            JsonStat mapperValue = mapper.readValue(json, JsonStat.class);
+            jsonStat.add(mapperValue);
+        }
 
+        for (JsonStat stat : jsonStat) {
+            String[][] table = new String[stat.getValues().size()][(stat.getId().size() * 2)];
+            shouldIterate = false;
+            Map<Integer, Integer> dimSizeIterator = new LinkedHashMap<>();
+            int count = 0;
+            for (int dimSize : stat.getSize())
+                dimSizeIterator.put(count++, 0);
 
-        Map<Integer, Integer> dimSizeIterator = new LinkedHashMap<>();
-        int count = 0;
-        for (int dimSize : jsonStat.getSize())
-            dimSizeIterator.put(count++, 0);
+            int dimension = 0;
 
-        int dimension = 0;
+            for (int i = 0; i < table.length; i++) {
+                for (int j = 0; j < table[0].length; j++) {
+                    String[] split = Arrays.toString(
+                                    keyAndValue(
+                                            stat.getDimensions()
+                                                    .get(dimension)
+                                                    .getCategoryList()
+                                                    .get(increaseCategorySize(dimension++, stat.getSize().size() - 1, dimSizeIterator, stat))))
+                            .replaceAll("\\[|\\]", "")
+                            .split("=");
 
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table[0].length; j++) {
-                String[] split = Arrays.toString(
-                                keyAndValue(
-                                        jsonStat.getDimensions()
-                                                .get(dimension)
-                                                .getCategoryList()
-                                                .get(increaseCategorySize(dimension++, jsonStat.getSize().size() - 1, dimSizeIterator))))
-                        .replaceAll("\\[|\\]", "")
-                        .split("=");
-                if (dimension == 1)
-                    shouldIterate = false;
+                    if (dimension == 1)
+                        shouldIterate = false;
 
-                table[i][j++] = split[0];
-                table[i][j] = split[1];
-                if (dimension == dimSizeIterator.size()) {
-                    dimension = 0;
-                    shouldIterate = true;
+                    table[i][j++] = split[0];
+                    table[i][j] = split[1];
+
+                    if (dimension == dimSizeIterator.size()) {
+                        dimension = 0;
+                        shouldIterate = true;
+                    }
                 }
             }
+            combineTableWithValues(table, stat);
         }
-        return sortedJsonStat = combineTableWithValues(table);
+        return sortedJsonStat;
     }
 
-    private List<Map<String[], BigDecimal>> combineTableWithValues(String[][] table) {
-        List<Map<String[], BigDecimal>> result = new ArrayList<>();
+    private void combineTableWithValues(String[][] table, JsonStat stat) {
         for (int i = 0; i < table.length; i++) {
             Map<String[], BigDecimal> combineCategoryWithValues = new LinkedHashMap<>();
-            combineCategoryWithValues.put(table[i], jsonStat.getValues().get(i));
-            result.add(combineCategoryWithValues);
+            combineCategoryWithValues.put(table[i], stat.getValues().get(i));
+            sortedJsonStat.add(combineCategoryWithValues);
         }
-        return result;
     }
 
     private Object[] keyAndValue(Map<String, String> stringMap) {
         return stringMap.entrySet().toArray();
     }
 
-    private int increaseCategorySize(int dimPosition, int categorySize, Map<Integer, Integer> dimSizeIterator) {
-        int jsSize = jsonStat.getSize().get(categorySize);
+    private int increaseCategorySize(int dimPosition, int categorySize, Map<Integer, Integer> dimSizeIterator, JsonStat stat) {
+        int jsSize = stat.getSize().get(categorySize);
 
         if ((dimSizeIterator.get(categorySize) < jsSize) && shouldIterate) {
             shouldIterate = false;
@@ -80,7 +86,7 @@ public class InsertTableService {
         if (dimSizeIterator.get(categorySize) == jsSize) {
             shouldIterate = true;
             dimSizeIterator.put(categorySize, 0);
-            return increaseCategorySize(dimPosition, categorySize - 1, dimSizeIterator);
+            return increaseCategorySize(dimPosition, categorySize - 1, dimSizeIterator, stat);
         }
         return dimSizeIterator.get(dimPosition);
     }
