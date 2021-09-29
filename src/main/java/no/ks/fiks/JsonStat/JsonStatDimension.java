@@ -4,17 +4,18 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class JsonStatDimension {
-    private List<String> categoryNames;
-    private String dimensionName;
+    private List<JsonStatUnit> jsonStatUnit;
+    private final String dimensionName;
     private Map<Integer, Map<String, String>> categoryList;
 
     public JsonStatDimension(String dimensionName, JsonNode categoryList) {
-        this.categoryNames = List.of(new String[]{"index", "label", "unit"});
+        this.jsonStatUnit = new ArrayList<>();
         this.dimensionName = dimensionName;
         this.categoryList = addToCategory(categoryList);
     }
@@ -23,6 +24,16 @@ public class JsonStatDimension {
         Map<Integer, Map<String, String>> dimCat = new LinkedHashMap<>();
         Map<String, Object> index = categories("index", categories);
         Map<String, Object> label = categories("label", categories);
+        if (dimensionName.equals("ContentsCode")) {
+            Map<String, Object> unit = categories("unit", categories);
+            for (String dimName : unit.keySet()) {
+                String[] splitTest = unit.get(dimName).toString().split(",");
+                String base = splitTest[0].replaceAll("\\{base=", "").trim();
+                String stringDecimals = splitTest[1].replaceAll("decimals=|\\}", "").trim();
+                int decimal = Integer.parseInt(stringDecimals);
+                jsonStatUnit.add(new JsonStatUnit(dimName, base, decimal));
+            }
+        }
         for (String key : index.keySet()) {
             Map<String, String> newLabel = new LinkedHashMap<>();
             newLabel.put(key, (String) label.get(key));
@@ -43,5 +54,9 @@ public class JsonStatDimension {
 
     public String getDimensionName() {
         return dimensionName;
+    }
+
+    public List<JsonStatUnit> getJsonStatUnit() {
+        return jsonStatUnit;
     }
 }
