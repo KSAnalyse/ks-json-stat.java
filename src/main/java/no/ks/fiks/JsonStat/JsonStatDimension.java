@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonStatDimension {
-    private List<JsonStatUnit> jsonStatUnit;
+    private final List<JsonStatUnit> jsonStatUnit;
     private final String dimensionName;
-    private Map<Integer, Map<String, String>> categoryList;
+    private final Map<Integer, Map<String, String>> categoryList;
 
     public JsonStatDimension(String dimensionName, JsonNode categoryList) {
         this.jsonStatUnit = new ArrayList<>();
