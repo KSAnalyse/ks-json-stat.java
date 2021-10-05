@@ -33,9 +33,8 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
      * JSON-Stat result.
      *
      * @param jsonParser             The object with the JSON-Stat value
-     * @param deserializationContext
+     * @param deserializationContext -
      * @return Returns new JsonStat object with the deserialized values.
-     * @throws IOException
      * @see JsonDeserializer
      */
     @Override

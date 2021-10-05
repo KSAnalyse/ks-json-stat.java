@@ -102,6 +102,7 @@ public class JsonStatDimension {
      * @return Returns the dimension name String.
      */
 
+    @SuppressWarnings("unused")
     public String getDimensionName() {
         return dimensionName;
     }

@@ -19,6 +19,7 @@ import java.util.*;
  * @see #combineTableWithValues(String[][], JsonStat)
  * @see #keyAndValue(Map)
  */
+@SuppressWarnings("unused")
 public class InsertTableService {
 
     private final List<JsonStat> jsonStat = new ArrayList<>();
@@ -168,6 +169,7 @@ public class InsertTableService {
      * @return Returns the biggest decimal in the query results.
      */
 
+    @SuppressWarnings("unused")
     public int getBiggestDecimal() {
         return biggestDecimal;
     }

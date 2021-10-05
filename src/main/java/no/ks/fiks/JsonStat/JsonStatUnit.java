@@ -47,6 +47,7 @@ public class JsonStatUnit {
      * @return Returns the base of the dimension.
      */
 
+    @SuppressWarnings("unused")
     public String getBase() {
         return base;
     }

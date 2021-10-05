@@ -42,7 +42,7 @@ public class JsonStat {
      * @param dimensions This is a list of objects for the dimension object in the table query result.
      * @param values     This is a list of the values from the table query result
      * @param status     This is a list that says which index in the values list is 'Not Reported'
-     * @param role
+     * @param role       -
      */
 
     public JsonStat(String classSet, String label, String source, LocalDateTime updated, List<JsonNode> id,
@@ -113,7 +113,7 @@ public class JsonStat {
      *
      * @return Returns the classSet string.
      */
-
+    @SuppressWarnings("unused")
     public String getClassSet() {
         return classSet;
     }
@@ -124,6 +124,7 @@ public class JsonStat {
      * @return Returns the label string.
      */
 
+    @SuppressWarnings("unused")
     public String getLabel() {
         return label;
     }
@@ -134,6 +135,7 @@ public class JsonStat {
      * @return Returns the source string.
      */
 
+    @SuppressWarnings("unused")
     public String getSource() {
         return source;
     }
@@ -144,6 +146,7 @@ public class JsonStat {
      * @return Returns the updated LocalDateTime variable.
      */
 
+    @SuppressWarnings("unused")
     public LocalDateTime getUpdated() {
         return updated;
     }
@@ -174,6 +177,7 @@ public class JsonStat {
      * @return Returns the Map of the combined {@link #id} and {@link #size}
      */
 
+    @SuppressWarnings("unused")
     public Map<String, Integer> getIdSize() {
         return idSize;
     }
@@ -204,6 +208,7 @@ public class JsonStat {
      * @return Returns the Map of status.
      */
 
+    @SuppressWarnings("unused")
     public Map<String, String> getStatus() {
         return status;
     }
@@ -214,6 +219,7 @@ public class JsonStat {
      * @return Returns the map of role.
      */
 
+    @SuppressWarnings("unused")
     public Map<String, String> getRole() {
         return role;
     }
