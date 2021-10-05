@@ -43,7 +43,6 @@ public class InsertTableService {
      *
      * @param jsonList The list of table query results.
      * @return Returns a List of the Map of combined dimension rows and values.
-     * @throws IOException
      * @see #combineTableWithValues(String[][], JsonStat) This method combines all the structured data in a global List.
      */
     public List<Map<String[], BigDecimal>> structureJsonStatTable(List<String> jsonList) throws IOException {
@@ -166,7 +165,7 @@ public class InsertTableService {
     /**
      * <h3>getBiggestDecimal</h3>
      *
-     * @returnm Returns the biggest decimal in the query results.
+     * @return Returns the biggest decimal in the query results.
      */
 
     public int getBiggestDecimal() {
@@ -176,7 +175,7 @@ public class InsertTableService {
     /**
      * <h3>getHighestDecimal</h3>
      * <p>
-     * This method gors through the jsonStatUnit object to find the largest decimal value and sets it to {@link #biggestDecimal}.
+     * This method goes through the jsonStatUnit object to find the largest decimal value and sets it to {@link #biggestDecimal}.
      */
     private void getHighestDecimal() {
         getJsonStat().stream()
