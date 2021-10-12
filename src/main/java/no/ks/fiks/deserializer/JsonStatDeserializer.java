@@ -29,7 +29,7 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
     /**
      * <h3>deserialize</h3>
      * <p>
-     * This method overrides the {@link #JsonDeserializer} deserialize method. A custom deserializer is written to handle
+     * This method overrides the JsonDeserializer deserialize method. A custom deserializer is written to handle
      * JSON-Stat result.
      *
      * @param jsonParser             The object with the JSON-Stat value
@@ -113,9 +113,11 @@ public class JsonStatDeserializer extends JsonDeserializer<JsonStat> {
      * @return Returns the cleaned up string as an String Array.
      */
     private String[] cleanString(String jsonString) {
-        String[] cleanUp = jsonString.split(":");
+        String[] cleanUp = jsonString.split(":", 2);
         cleanUp[0] = cleanUp[0].replaceAll("\\{|\\[", "");
         cleanUp[1] = cleanUp[1].replaceAll("\\}|\\[|\\]", "");
+        cleanUp[0] = cleanUp[0].replaceAll("\"", "");
+        cleanUp[1] = cleanUp[1].replaceAll("\"", "");
         return cleanUp;
     }
 }
