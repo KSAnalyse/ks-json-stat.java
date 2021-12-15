@@ -56,9 +56,9 @@ public class JsonStatDimension {
         if (dimensionName.equals("ContentsCode")) {
             Map<String, Object> unit = categories("unit", categories);
             for (String dimName : unit.keySet()) {
-                String[] splitUnit = unit.get(dimName).toString().split(",");
+                String[] splitUnit = unit.get(dimName).toString().split(", decimals");
                 String base = splitUnit[0].replaceAll("\\{base=", "").trim();
-                String stringDecimals = splitUnit[1].replaceAll("decimals=|\\}", "").trim();
+                String stringDecimals = splitUnit[1].replaceAll("decimals|=|\\}", "").trim();
                 int decimal = Integer.parseInt(stringDecimals);
                 jsonStatUnit.add(new JsonStatUnit(dimName, base, decimal));
             }
