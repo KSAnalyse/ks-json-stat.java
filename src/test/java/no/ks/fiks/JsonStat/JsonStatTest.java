@@ -161,9 +161,9 @@ public class JsonStatTest {
         int decimalActual = jsonStatUnitActual.getDecimals();
         int decimalTest = jsonStatUnitTest.getDecimals();
         Assertions.assertAll("Should return JsonStatUnit variables",
-                () -> Assertions.assertEquals(dimNameActual, dimNameTest),
-                () -> Assertions.assertEquals(baseActual, baseTest),
-                () -> Assertions.assertEquals(decimalActual, decimalTest));
+                () -> Assertions.assertEquals(dimNameTest, dimNameActual),
+                () -> Assertions.assertEquals(baseTest, baseActual),
+                () -> Assertions.assertEquals(decimalTest, decimalActual));
     }
 
     @Test
