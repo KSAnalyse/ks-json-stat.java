@@ -28,7 +28,7 @@ public class JsonStatTestDeserializerTest {
         module = new SimpleModule();
         module.addDeserializer(JsonStat.class, new JsonStatDeserializer());
         mapper.registerModule(module);
-        json = Files.readString(Path.of("src/main/resources/resultatTest.json"));
+        json = Files.readString(Path.of("src/main/resources/resultatTest3.json"));
         jsonList.add(json);
         jsonStats.add(mapper.readValue(jsonList.get(0), JsonStat.class));
         jsonStat = jsonStats.get(0);

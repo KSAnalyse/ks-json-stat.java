@@ -1,0 +1,370 @@
+{
+  "class": "dataset",
+  "label": "12191: Kommunehelse - supplerende grunnlagstall og nøkkeltall, etter statistikkvariabel, region og år",
+  "source": "Statistisk sentralbyrå",
+  "updated": "2021-06-13T22:00:00Z",
+  "id": [
+    "ContentsCode",
+    "KOKkommuneregion0000",
+    "Tid"
+  ],
+  "size": [
+    5,
+    9,
+    3
+  ],
+  "dimension": {
+    "ContentsCode": {
+      "label": "statistikkvariabel",
+      "category": {
+        "index": {
+          "KOSavtalehjemler0001": 0,
+          "KOShjemmebesokjo0000": 1,
+          "KOSergoaarsverk0000": 2,
+          "KOSfrisklivssent0000": 3,
+          "KOShfutilbudtxt0000": 4
+        },
+        "label": {
+          "KOSavtalehjemler0001": "Avtalehjemler for private fysioterapeuter, fulltid (antall)",
+          "KOShjemmebesokjo0000": "Hjemmebesøk utført av jordmor innen tre* døgn etter kvinners og nyfødtes hjemkomst fra føde/barselavdeling (antall)",
+          "KOSergoaarsverk0000": "Ergoterapeuter (kommunehelse + omsorg) (årsverk)",
+          "KOSfrisklivssent0000": "Antall kommuner med frisklivssentral  (ja=1, nei=0)",
+          "KOShfutilbudtxt0000": "Antall kommuner med tilbud om helsestasjon for ungdom (ja=1, nei=0)"
+        },
+        "unit": {
+          "KOSavtalehjemler0001": {
+            "base": "antall",
+            "decimals": 0
+          },
+          "KOShjemmebesokjo0000": {
+            "base": "antall",
+            "decimals": 0
+          },
+          "KOSergoaarsverk0000": {
+            "base": "årsverk",
+            "decimals": 1
+          },
+          "KOSfrisklivssent0000": {
+            "base": "ja=1, nei=0",
+            "decimals": 0
+          },
+          "KOShfutilbudtxt0000": {
+            "base": "ja=1, nei=0",
+            "decimals": 0
+          }
+        }
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "KOSavtalehjemler0001": "urn:ssb:contextvariable:common:8f072ee1-a2b1-4ddd-aa7f-07c13d99e694:100815:KOSavtalehjemler0001",
+              "KOShjemmebesokjo0000": "urn:ssb:contextvariable:common:8f072ee1-a2b1-4ddd-aa7f-07c13d99e694:100815:KOShjemmebesokjo0000",
+              "KOSergoaarsverk0000": "urn:ssb:contextvariable:common:8f072ee1-a2b1-4ddd-aa7f-07c13d99e694:147760:KOSergoaarsverk0000",
+              "KOSfrisklivssent0000": "urn:ssb:contextvariable:common:8f072ee1-a2b1-4ddd-aa7f-07c13d99e694:158076:KOSfrisklivssent0000",
+              "KOShfutilbudtxt0000": "urn:ssb:contextvariable:common:8f072ee1-a2b1-4ddd-aa7f-07c13d99e694:158076:KOShfutilbudtxt0000"
+            }
+          }
+        ]
+      }
+    },
+    "KOKkommuneregion0000": {
+      "label": "region",
+      "category": {
+        "index": {
+          "3002": 0,
+          "3005": 1,
+          "3007": 2,
+          "3014": 3,
+          "3028": 4,
+          "3036": 5,
+          "3037": 6,
+          "3038": 7,
+          "3039": 8
+        },
+        "label": {
+          "3002": "Moss",
+          "3005": "Drammen",
+          "3007": "Ringerike",
+          "3014": "Indre Østfold",
+          "3028": "Enebakk",
+          "3036": "Nannestad",
+          "3037": "Hurdal",
+          "3038": "Hole",
+          "3039": "Flå"
+        }
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "KOKkommuneregion0000": "urn:ssb:classification:klass:231"
+            }
+          }
+        ]
+      }
+    },
+    "Tid": {
+      "label": "år",
+      "category": {
+        "index": {
+          "2018": 0,
+          "2019": 1,
+          "2020": 2
+        },
+        "label": {
+          "2018": "2018",
+          "2019": "2019",
+          "2020": "2020"
+        }
+      }
+    }
+  },
+  "value": [
+    null,
+    null,
+    20,
+    null,
+    null,
+    45,
+    null,
+    null,
+    6,
+    null,
+    null,
+    13,
+    null,
+    null,
+    3,
+    null,
+    null,
+    2,
+    null,
+    null,
+    0,
+    null,
+    null,
+    0,
+    null,
+    null,
+    0,
+    null,
+    null,
+    228,
+    null,
+    null,
+    315,
+    null,
+    null,
+    67,
+    null,
+    null,
+    217,
+    null,
+    null,
+    45,
+    null,
+    null,
+    143,
+    null,
+    null,
+    14,
+    null,
+    null,
+    68,
+    null,
+    null,
+    null,
+    null,
+    null,
+    13.5,
+    null,
+    null,
+    27.8,
+    null,
+    null,
+    8.9,
+    null,
+    null,
+    11.7,
+    null,
+    null,
+    2.7,
+    null,
+    null,
+    4.5,
+    null,
+    null,
+    2.5,
+    null,
+    null,
+    4.5,
+    null,
+    null,
+    null,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    0,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1,
+    null,
+    null,
+    0,
+    null,
+    null,
+    1,
+    null,
+    null,
+    1
+  ],
+  "status": {
+    "0": ".",
+    "1": ".",
+    "3": ".",
+    "4": ".",
+    "6": ".",
+    "7": ".",
+    "9": ".",
+    "10": ".",
+    "12": ".",
+    "13": ".",
+    "15": ".",
+    "16": ".",
+    "18": ".",
+    "19": ".",
+    "21": ".",
+    "22": ".",
+    "24": ".",
+    "25": ".",
+    "27": ".",
+    "28": ".",
+    "30": ".",
+    "31": ".",
+    "33": ".",
+    "34": ".",
+    "36": ".",
+    "37": ".",
+    "39": ".",
+    "40": ".",
+    "42": ".",
+    "43": ".",
+    "45": ".",
+    "46": ".",
+    "48": ".",
+    "49": ".",
+    "51": ".",
+    "52": ".",
+    "53": ":",
+    "54": ".",
+    "55": ".",
+    "57": ".",
+    "58": ".",
+    "60": ".",
+    "61": ".",
+    "63": ".",
+    "64": ".",
+    "66": ".",
+    "67": ".",
+    "69": ".",
+    "70": ".",
+    "72": ".",
+    "73": ".",
+    "75": ".",
+    "76": ".",
+    "78": ".",
+    "79": ".",
+    "80": "..",
+    "81": ".",
+    "82": ".",
+    "84": ".",
+    "85": ".",
+    "87": ".",
+    "88": ".",
+    "90": ".",
+    "91": ".",
+    "93": ".",
+    "94": ".",
+    "96": ".",
+    "97": ".",
+    "99": ".",
+    "100": ".",
+    "102": ".",
+    "103": ".",
+    "105": ".",
+    "106": ".",
+    "108": ".",
+    "109": ".",
+    "111": ".",
+    "112": ".",
+    "114": ".",
+    "115": ".",
+    "117": ".",
+    "118": ".",
+    "120": ".",
+    "121": ".",
+    "123": ".",
+    "124": ".",
+    "126": ".",
+    "127": ".",
+    "129": ".",
+    "130": ".",
+    "132": ".",
+    "133": "."
+  },
+  "role": {
+    "time": [
+      "Tid"
+    ],
+    "metric": [
+      "ContentsCode"
+    ]
+  },
+  "version": "2.0",
+  "extension": {
+    "px": {
+      "infofile": "al",
+      "tableid": "12191",
+      "decimals": 0
+    }
+  }
+}

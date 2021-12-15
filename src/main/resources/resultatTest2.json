@@ -1,0 +1,214 @@
+{
+  "class": "dataset",
+  "label": "08655: Byggjekostnadsindeks for bustadblokk (2015=100), etter arbeidstype, statistikkvariabel og måned",
+  "source": "Statistisk sentralbyrå",
+  "updated": "2021-11-12T07:00:00Z",
+  "id": [
+    "Arbeidstype",
+    "ContentsCode",
+    "Tid"
+  ],
+  "size": [
+    5,
+    3,
+    5
+  ],
+  "dimension": {
+    "Arbeidstype": {
+      "label": "arbeidstype",
+      "category": {
+        "index": {
+          "20": 0,
+          "21": 1,
+          "22": 2,
+          "30": 3,
+          "31": 4
+        },
+        "label": {
+          "20": "Bustadblokk i alt",
+          "21": "Bustadblokk i alt, materialar",
+          "22": "Grunnarbeid, i alt",
+          "30": "Elektrikararbeid, i alt",
+          "31": "Elektrikararbeid, materialar"
+        }
+      }
+    },
+    "ContentsCode": {
+      "label": "statistikkvariabel",
+      "category": {
+        "index": {
+          "Byggindeks": 0,
+          "EndrForrMnd": 1,
+          "EndrForrAar": 2
+        },
+        "label": {
+          "Byggindeks": "Byggjekostnadsindeks",
+          "EndrForrMnd": "Endring frå førre månad (prosent)",
+          "EndrForrAar": "Endring frå førre år (prosent)"
+        },
+        "unit": {
+          "Byggindeks": {
+            "base": "indeks",
+            "decimals": 1
+          },
+          "EndrForrMnd": {
+            "base": "prosent",
+            "decimals": 1
+          },
+          "EndrForrAar": {
+            "base": "prosent",
+            "decimals": 1
+          }
+        }
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "Byggindeks": "urn:ssb:conceptvariable:vardok:1849"
+            }
+          }
+        ]
+      }
+    },
+    "Tid": {
+      "label": "måned",
+      "category": {
+        "index": {
+          "1978M01": 0,
+          "1978M02": 1,
+          "1978M03": 2,
+          "2021M09": 3,
+          "2021M10": 4
+        },
+        "label": {
+          "1978M01": "1978M01",
+          "1978M02": "1978M02",
+          "1978M03": "1978M03",
+          "2021M09": "2021M09",
+          "2021M10": "2021M10"
+        }
+      }
+    }
+  },
+  "value": [
+    20.4,
+    20.4,
+    20.4,
+    123.1,
+    124.1,
+    null,
+    0,
+    0,
+    0.1,
+    0.8,
+    null,
+    null,
+    null,
+    7.7,
+    7.9,
+    18.7,
+    18.8,
+    18.8,
+    133.2,
+    134.6,
+    null,
+    0.5,
+    0,
+    -0.1,
+    1.1,
+    null,
+    null,
+    null,
+    13.5,
+    14.2,
+    null,
+    null,
+    null,
+    115.9,
+    117.3,
+    null,
+    null,
+    null,
+    0,
+    1.2,
+    null,
+    null,
+    null,
+    4.4,
+    5.7,
+    9,
+    9,
+    9,
+    129.8,
+    129.9,
+    null,
+    0,
+    0,
+    0.2,
+    0.1,
+    null,
+    null,
+    null,
+    5.4,
+    5.3,
+    4.9,
+    4.9,
+    4.9,
+    156.1,
+    156,
+    null,
+    0,
+    0,
+    0.6,
+    -0.1,
+    null,
+    null,
+    null,
+    12.1,
+    11.4
+  ],
+  "status": {
+    "5": "..",
+    "10": "..",
+    "11": "..",
+    "12": "..",
+    "20": "..",
+    "25": "..",
+    "26": "..",
+    "27": "..",
+    "30": "..",
+    "31": "..",
+    "32": "..",
+    "35": "..",
+    "36": "..",
+    "37": "..",
+    "40": "..",
+    "41": "..",
+    "42": "..",
+    "50": "..",
+    "55": "..",
+    "56": "..",
+    "57": "..",
+    "65": "..",
+    "70": "..",
+    "71": "..",
+    "72": ".."
+  },
+  "role": {
+    "time": [
+      "Tid"
+    ],
+    "metric": [
+      "ContentsCode"
+    ]
+  },
+  "version": "2.0",
+  "extension": {
+    "px": {
+      "infofile": "al",
+      "tableid": "08655",
+      "decimals": 1
+    }
+  }
+}
